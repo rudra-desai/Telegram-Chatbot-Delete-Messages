@@ -8,7 +8,6 @@ while True:
     updates = updates["result"]
     if updates:
         for item in updates:
-            update_id = item["update_id"]
             try:
                 message = str(item["message"]["text"])
             except:
