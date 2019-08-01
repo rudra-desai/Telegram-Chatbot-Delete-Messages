@@ -8,6 +8,7 @@ while True:
     updates = updates["result"]
     if updates:
         for item in updates:
+            update_id = item["update_id"]
             try:
                 message = str(item["message"]["text"])
             except:
@@ -16,9 +17,12 @@ while True:
             print("------------------------------")
             chatID = item["message"]["chat"]["id"]
             messID = item["message"]["message_id"]
-            print(chatID)
-            print(messID)
-            print(message)
-            if message is not None:
-                if "?" not in message and "https" not in message and "http" not in message and "www." not in message:
-                   bot.deleteNotNeeded(message, messID ,chatID)
+            print("Chat ID: - " + str(chatID))
+            print("Message ID - " + str(messID))
+            print(message + " - deleted")
+            try:
+                if message is not None:
+                    if "?" not in message and "https" not in message and "http" not in message and "www." not in message:
+                       bot.deleteNotNeeded(message, messID ,chatID)
+            except:
+                print(message + " not deleted- error occured")
